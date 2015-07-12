@@ -1,4 +1,4 @@
-package gameStore;
+package gamesStore;
 
 import javax.servlet.http.HttpServletRequest;
 

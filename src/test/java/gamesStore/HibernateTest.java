@@ -1,4 +1,4 @@
-package gameStore;
+package gamesStore;
 
 import junit.framework.TestCase;
 

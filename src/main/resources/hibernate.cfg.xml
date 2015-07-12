@@ -11,6 +11,6 @@
         <property name="hibernate.connection.username">user</property>
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
         <property name="hibernate.search.autoregister_listeners">false</property>
-        <mapping resource="gameStore/Gamer.hbm.xml" />
+        <mapping resource="gamesStore/Gamer.hbm.xml" />
     </session-factory>
 </hibernate-configuration>

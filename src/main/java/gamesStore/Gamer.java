@@ -1,4 +1,4 @@
-package gameStore;
+package gamesStore;
 
 // Generated 2015-07-09 17:06:44 by Hibernate Tools 3.4.0.CR1
 
