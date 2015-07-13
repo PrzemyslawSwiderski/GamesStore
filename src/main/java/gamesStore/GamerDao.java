@@ -9,72 +9,73 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.springframework.stereotype.Component;
 
+import static java.lang.System.out;
+
 @Component
-public class GamerDao
-{
-	private Session session;
-	public GamerDao()
-	{
-		session = new Configuration().configure().buildSessionFactory()
-				.openSession();
-	}
-	
-	public int register(Gamer g)
-	{
-		int i = 0;
+public class GamerDao {
+    private Session session;
 
-		Transaction t = session.beginTransaction();
-		t.begin();
+    public int register(Gamer g) {
 
-		i = (Integer) session.save(g);
+        session = new Configuration().configure().buildSessionFactory().openSession();
 
-		t.commit();
+        int i = 0;
 
-		return i;
-	}
+        Transaction t = session.beginTransaction();
+        t.begin();
 
-	public List<Gamer> loadList()
-	{
-		Session session = new Configuration().configure()
-				.buildSessionFactory().openSession();
+        i = (Integer) session.save(g);
 
-		Query query = session.createQuery("from Gamer");
-		
-		@SuppressWarnings("unchecked")
-		List<Gamer> list = query.list();
+        t.commit();
 
-		session.close();
-		
-		return list;
-	}
-	public String gamersToString()
-	{
-		Session session = new Configuration().configure()
-				.buildSessionFactory().openSession();
+        session.close();
 
-		Query query = session.createQuery("from Gamer");
-		
-		@SuppressWarnings("unchecked")
-		List<Gamer> list = query.list();
+        return i;
+    }
 
-		String stringList="";
-		Iterator<Gamer> itr = list.iterator();
-		while (itr.hasNext())
-		{
-			Gamer g = itr.next();
-			stringList+=g;
-			stringList+="\n";
-		}
-		session.close();
-		
-		return stringList;
-	}
-	public void deleteAll()
-	{
-		Session session = new Configuration().configure()
-				.buildSessionFactory().openSession();
-		
-		session.createSQLQuery("truncate table gamer").executeUpdate();
-		session.close();
-	}
+    public List<Gamer> loadList() {
+        session = new Configuration().configure().buildSessionFactory().openSession();
+        Query query = session.createQuery("from Gamer");
+
+        @SuppressWarnings("unchecked")
+        List<Gamer> list = query.list();
+
+        session.close();
+
+        return list;
+    }
+
+    public String gamersToString() {
+        session = new Configuration().configure().buildSessionFactory().openSession();
+        Query query = session.createQuery("from Gamer");
+
+        @SuppressWarnings("unchecked")
+        List<Gamer> list = query.list();
+
+        String stringList = "";
+        Iterator<Gamer> itr = list.iterator();
+        while (itr.hasNext()) {
+            Gamer g = itr.next();
+            stringList += g;
+            stringList += "\n";
+        }
+        session.close();
+
+        return stringList;
+    }
+
+    public void deleteAll() {
+        session = new Configuration().configure().buildSessionFactory().openSession();
+        out.println("Trying to delete entitiessssss.");
+
+        Transaction t = session.beginTransaction();
+        t.begin();
+
+        Query query = session.createQuery("delete from Gamer");
+        query.executeUpdate();
+
+        t.commit();
+
+        session.close();
+    }
 }
