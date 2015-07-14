@@ -7,7 +7,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-import static java.lang.System.out;
 
 @Controller
 public class GamerController {
@@ -30,7 +29,7 @@ public class GamerController {
     @RequestMapping("clear")
     public String clear() {
         gamerDao.deleteAll();
-        return "redirect:gamer.html";
+        return "redirect:.";
     }
 
 }

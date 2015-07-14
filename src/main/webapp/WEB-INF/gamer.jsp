@@ -60,7 +60,7 @@
 </head>
 
 <body>
-<form method="post" action="gamer.html">
+<form method="post" action=".">
     Name: <input type="text" placeholder="First name" name="name" value=""/> Last Name: <input type="text" placeholder="Last name"
                                                                       name="lastname" value=""/> <input type="submit"
                                                                                                         name="add"
