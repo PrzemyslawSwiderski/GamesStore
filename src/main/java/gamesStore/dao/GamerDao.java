@@ -10,7 +10,7 @@ public interface GamerDao {
 
     public Gamer get(int id);
 
-    public void saveOrUpdate(Gamer user);
+    public void saveOrUpdate(Gamer gamer);
 
     public void delete(int id);
 

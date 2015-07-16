@@ -1,7 +1,10 @@
 package gamesStore.config;
 
+import gamesStore.dao.GameDao;
+import gamesStore.dao.GameDaoImp;
 import gamesStore.dao.GamerDao;
 import gamesStore.dao.GamerDaoImp;
+import gamesStore.model.Game;
 import gamesStore.model.Gamer;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
@@ -45,6 +48,8 @@ public class ApplicationContextConfig {
         Properties properties = new Properties();
         properties.put("hibernate.show_sql", "true");
         properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+        properties.put("hibernate.hbm2ddl.auto", "create");
+
         return properties;
     }
 
@@ -54,6 +59,7 @@ public class ApplicationContextConfig {
         LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
         sessionBuilder.addProperties(getHibernateProperties());
         sessionBuilder.addAnnotatedClasses(Gamer.class);
+        sessionBuilder.addAnnotatedClasses(Game.class);
         return sessionBuilder.buildSessionFactory();
     }
 
@@ -72,4 +78,12 @@ public class ApplicationContextConfig {
     public GamerDao getGamerDao(SessionFactory sessionFactory) {
         return new GamerDaoImp(sessionFactory);
     }
+
+    @Autowired
+    @Bean(name = "gameDao")
+    public GameDao getGameDao(SessionFactory sessionFactory) {
+        return new GameDaoImp(sessionFactory);
+    }
+
+
 }

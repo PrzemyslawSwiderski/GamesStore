@@ -23,6 +23,7 @@ public class GamerDaoImp implements GamerDao
     {
         this.sessionFactory = sessionFactory;
     }
+
     @Override
     @Transactional
     public List<Gamer> list() {

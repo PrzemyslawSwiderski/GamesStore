@@ -1,18 +1,17 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Przemek_Swiderski
-  Date: 2015-07-15
-  Time: 01:42
+  Date: 2015-07-16
+  Time: 17:36
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-  <title>Gamers List</title>
+  <title>Games List</title>
   <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
   <style>
     body {
@@ -96,40 +95,44 @@
 
 <body>
 <hr>
-<form:form action="gamerlist/new" method="get">
-  <input align="middle" type="submit" value="Add New Gamer">
+<form:form action="gamelist/new" method="get">
+  <input align="middle" type="submit" value="Add New Game">
 </form:form>
 <hr>
 <table style="width:100%" class="pure-table">
-  <c:forEach var="gamer" items="${gamerList}" varStatus="status">
+  <c:forEach var="game" items="${gameList}" varStatus="status">
     <tr>
       <td>
         <b>${status.index + 1}.</b>
         </b>
       </td>
       <td>
-        Name: <b>${gamer.name}</b>
+        Name: <b>${game.title}</b>
         </b>
       </td>
       <td>
-        Last Name: <b>${gamer.lastName}</b>
+        Last Name: <b>${game.studio}</b>
         </b>
       </td>
       <td>
-        Sign Date: <b>${gamer.signDate}</b>
+        Release Date: <b>${game.releaseDate}</b>
         </b>
       </td>
       <td>
-        <a href="gamerlist/edit?id=${gamer.idGamer}" class="button dark_grey">Edit</a>
+        In Store: <b>${game.inStore}</b>
+        </b>
+      </td>
+      <td>
+        <a href="gamelist/edit?id=${game.idGame}" class="button dark_grey">Edit</a>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="gamerlist/delete?id=${gamer.idGamer}" class="button dark_grey">Delete</a>
+        <a href="gamelist/delete?id=${game.idGame}" class="button dark_grey">Delete</a>
       </td>
     </tr>
   </c:forEach>
 
 </table>
 <hr>
-<form method="get" action="gamerlist/deleteAll">
+<form method="get" action="gamelist/deleteAll">
   <input type="submit" value="Clear list">
 </form>
 <br>
@@ -140,3 +143,4 @@
 </form>
 </body>
 </html>
+

@@ -2,6 +2,7 @@ package gamesStore;
 
 import gamesStore.config.ApplicationContextConfig;
 import gamesStore.dao.GamerDao;
+import gamesStore.dao.GamerDaoImp;
 import gamesStore.model.Gamer;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +23,7 @@ public class GamerDaoTest
         AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
         appContext.register(ApplicationContextConfig.class);
         appContext.refresh();
-        gamerDao = (GamerDao) appContext.getBean("gamerDao");
+        gamerDao = appContext.getBean(GamerDao.class);
     }
 
     @Test
