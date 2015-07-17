@@ -17,12 +17,13 @@ import java.util.List;
  * Created by Przemek_Swiderski on 2015-07-16.
  */
 @Controller
+@RequestMapping(value = "/gamerlist")
 public class GamerController
 {
     @Autowired
     private GamerDao gamerDao;
 
-    @RequestMapping("/gamerlist")
+    @RequestMapping(value = "/")
     public ModelAndView getGamerList() throws Exception {
         List<Gamer> gamerList = gamerDao.list();
         ModelAndView model = new ModelAndView("GamerList");
@@ -30,14 +31,14 @@ public class GamerController
         return model;
     }
 
-    @RequestMapping(value = "/gamerlist/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/new", method = RequestMethod.GET)
     public ModelAndView newGamer() {
         ModelAndView model = new ModelAndView("GamerForm");
         model.addObject("gamer", new Gamer());
         return model;
     }
 
-    @RequestMapping(value = "/gamerlist/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit", method = RequestMethod.GET)
     public ModelAndView editGamer(HttpServletRequest request) {
         int gamerId = Integer.parseInt(request.getParameter("id"));
         Gamer gamer = gamerDao.get(gamerId);
@@ -46,21 +47,21 @@ public class GamerController
         return model;
     }
 
-    @RequestMapping(value = "/gamerlist/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public ModelAndView deleteGamer(HttpServletRequest request) {
         int gamerId = Integer.parseInt(request.getParameter("id"));
         gamerDao.delete(gamerId);
-        return new ModelAndView("redirect:/gamerlist");
+        return new ModelAndView("redirect:.");
     }
 
-    @RequestMapping(value = "/gamerlist/save", method = RequestMethod.POST)
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView saveGamer(@ModelAttribute Gamer gamer) {
         gamerDao.saveOrUpdate(gamer);
-        return new ModelAndView("redirect:/gamerlist");
+        return new ModelAndView("redirect:.");
     }
-    @RequestMapping(value = "/gamerlist/deleteAll", method = RequestMethod.GET)
+    @RequestMapping(value = "/deleteAll", method = RequestMethod.GET)
     public ModelAndView deleteAll() {
         gamerDao.clear();
-        return new ModelAndView("redirect:/gamerlist");
+        return new ModelAndView("redirect:.");
     }
 }

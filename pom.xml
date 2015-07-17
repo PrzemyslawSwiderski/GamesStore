@@ -79,6 +79,12 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.30</version>
         </dependency>
+        <!--Postgresql Driver-->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>9.4-1201-jdbc4</version>
+        </dependency>
 
         <!-- test dependencies -->
         <dependency>
@@ -94,8 +100,8 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat6-maven-plugin</artifactId>
-                <version>2.0</version>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.2</version>
             </plugin>
         </plugins>
     </build>

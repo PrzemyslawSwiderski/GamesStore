@@ -1,7 +1,10 @@
 package gamesStore.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,12 +19,12 @@ public class Gamer
 
     public Gamer()
     {
-        signDate= Calendar.getInstance().getTime();
+        signDate = Calendar.getInstance().getTime();
     }
 
     public Gamer(String name, String lastName)
     {
-        signDate= Calendar.getInstance().getTime();
+        signDate = Calendar.getInstance().getTime();
         this.name = name;
         this.lastName = lastName;
     }
@@ -61,7 +64,7 @@ public class Gamer
 
     public String toString()
     {
-        return "Id:  "+idGamer + " | Last Name:  " + lastName + " | Name:   " + name+" | Sign Date:  "+signDate;
+        return "Id:  " + idGamer + " | Last Name:  " + lastName + " | Name:   " + name + " | Sign Date:  " + signDate;
     }
 
     public Date getSignDate()

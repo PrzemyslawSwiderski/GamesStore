@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Przemek_Swiderski
@@ -72,24 +73,25 @@
 <body>
 <div align="center">
   <h1>Game Form</h1>
+  <form:errors path="game.*"/>
   <table>
     <form:form action="save" method="post" modelAttribute="game">
       <form:hidden path="idGame"/>
       <tr>
         <td>Title:</td>
-        <td><form:input path="title"/></td>
+        <td><input id="title" name="title" type="text"></td>
       </tr>
       <tr>
         <td>Studio:</td>
-        <td><form:input path="studio"/></td>
+        <td><input id="studio" name="studio" type="text"></td>
       </tr>
       <tr>
         <td>Release Date:</td>
-        <td><input id="releaseDate" name="releaseDate" type="date" ></td>
+        <td><input id="releaseDate" name="releaseDate" type="date"></td>
       </tr>
       <tr>
         <td>Left in Store:</td>
-        <td><input id="inStore" name="inStore" type="number"></td>
+        <td><input id="inStore" name="inStore" type="number" min="1"></td>
       </tr>
 
       <tr>

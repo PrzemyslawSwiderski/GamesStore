@@ -3,7 +3,8 @@ package gamesStore.model;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by Przemek_Swiderski on 2015-07-16.
@@ -16,9 +17,7 @@ public class Game
     private int idGame;
     private String title;
     private String studio;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-    private LocalDate releaseDate;
+    private Date releaseDate;
     private int inStore;
 
 
@@ -27,7 +26,7 @@ public class Game
 
     }
 
-    public Game(String title, String studio, LocalDate releaseDate, int inStore)
+    public Game(String title, String studio, Date releaseDate, int inStore)
     {
         this.title = title;
         this.studio = studio;
@@ -68,12 +67,12 @@ public class Game
         this.studio = studio;
     }
 
-    public LocalDate getReleaseDate()
+    public Date getReleaseDate()
     {
         return releaseDate;
     }
 
-    public void setReleaseDate(LocalDate releaseDate)
+    public void setReleaseDate(Date releaseDate)
     {
         this.releaseDate = releaseDate;
     }
