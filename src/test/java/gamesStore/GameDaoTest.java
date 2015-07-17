@@ -3,9 +3,12 @@ package gamesStore;
 import gamesStore.config.ApplicationContextConfig;
 import gamesStore.dao.GameDao;
 import gamesStore.model.Game;
-import org.junit.Before;
 import org.junit.Test;
-import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.util.Calendar;
 import java.util.List;
@@ -13,18 +16,13 @@ import java.util.List;
 /**
  * Created by Przemek_Swiderski on 2015-07-16.
  */
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@ContextConfiguration(classes = ApplicationContextConfig.class)
 public class GameDaoTest
 {
+    @Autowired
     private GameDao gameDao;
-
-    @Before
-    public void setUp()
-    {
-        AnnotationConfigWebApplicationContext appContext = new AnnotationConfigWebApplicationContext();
-        appContext.register(ApplicationContextConfig.class);
-        appContext.refresh();
-        gameDao = appContext.getBean(GameDao.class);
-    }
 
     @Test
     public void saveTest()

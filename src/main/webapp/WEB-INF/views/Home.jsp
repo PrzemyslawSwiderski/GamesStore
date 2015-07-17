@@ -15,26 +15,23 @@
 <body>
 <h1 align="center">MENU</h1>
 
-<form method="get" action="gamerlist/">
-    <input type="submit" value="To Gamers">
-</form>
 <br>
 
-<form method="get" action="gamelist/">
-    <input type="submit" value="To Games">
-</form>
 
 <table style="width:100%" class="pure-table">
     <td>
         <table style="width:100%" class="pure-table">
+            <caption style="font-size: 150%">
+                <form method="get" action="gamelist/">
+                    <input type="submit" value="Games">
+                </form>
+            </caption>
             <tr>
                 <th>Nr.</th>
                 <th>Title</th>
                 <th>Studio</th>
                 <th>Release Date</th>
                 <th>In Store</th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach var="game" items="${gameList}" varStatus="status">
                 <tr>
@@ -53,12 +50,6 @@
                     <td>
                         <b>${game.inStore}</b>
                     </td>
-                    <td>
-                        <a href="edit?id=${game.idGame}" class="button dark_grey">Edit</a>
-                    </td>
-                    <td>
-                        <a href="delete?id=${game.idGame}" class="button dark_grey">Delete</a>
-                    </td>
                 </tr>
             </c:forEach>
 
@@ -66,13 +57,16 @@
     </td>
     <td>
         <table style="width:100%" class="pure-table">
+            <caption style="font-size: 150%">
+                <form method="get" action="gamerlist/">
+                    <input type="submit" value="Gamers">
+                </form>
+            </caption>
             <tr>
                 <th>Nr.</th>
                 <th>Name</th>
                 <th>Last Name</th>
                 <th>Sign Date</th>
-                <th></th>
-                <th></th>
             </tr>
             <c:forEach var="gamer" items="${gamerList}" varStatus="status">
                 <tr>
@@ -87,12 +81,6 @@
                     </td>
                     <td>
                         <b>${gamer.signDate}</b>
-                    </td>
-                    <td>
-                        <a href="edit?id=${gamer.idGamer}" class="button dark_grey">Edit</a>
-                    </td>
-                    <td>
-                        <a href="delete?id=${gamer.idGamer}" class="button dark_grey">Delete</a>
                     </td>
                 </tr>
             </c:forEach>
