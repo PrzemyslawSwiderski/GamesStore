@@ -1,17 +1,17 @@
 package gamesStore.model;
 
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Table(name = "gamer")
-public class Gamer
+public class Gamer implements Cloneable
 {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idGamer")
     private int idGamer;
     private String name;
     private String lastName;
@@ -29,9 +29,6 @@ public class Gamer
         this.lastName = lastName;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idGamer")
     public Integer getIdGamer()
     {
         return this.idGamer;
@@ -75,5 +72,10 @@ public class Gamer
     public void setSignDate(Date signDate)
     {
         this.signDate = signDate;
+    }
+
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 }

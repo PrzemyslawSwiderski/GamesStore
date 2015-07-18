@@ -1,11 +1,9 @@
 package gamesStore.config;
 
-import gamesStore.dao.GameDao;
-import gamesStore.dao.GameDaoImp;
-import gamesStore.dao.GamerDao;
-import gamesStore.dao.GamerDaoImp;
+import gamesStore.dao.*;
 import gamesStore.model.Game;
 import gamesStore.model.Gamer;
+import gamesStore.model.Purchase;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -75,6 +73,8 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter
         sessionBuilder.addProperties(getHibernateProperties());
         sessionBuilder.addAnnotatedClasses(Gamer.class);
         sessionBuilder.addAnnotatedClasses(Game.class);
+        sessionBuilder.addAnnotatedClasses(Purchase.class);
+
         return sessionBuilder.buildSessionFactory();
     }
 
@@ -101,6 +101,13 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter
     public GameDao getGameDao(SessionFactory sessionFactory)
     {
         return new GameDaoImp(sessionFactory);
+    }
+
+    @Autowired
+    @Bean(name = "purchaseDao")
+    public PurchaseDao getPurchaseDao(SessionFactory sessionFactory)
+    {
+        return new PurchaseDaoImp(sessionFactory);
     }
 
     @Override

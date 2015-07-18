@@ -1,9 +1,6 @@
 package gamesStore.model;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -12,8 +9,12 @@ import java.util.Date;
 
 @Entity
 @Table(name = "game")
-public class Game
+public class Game implements Cloneable
 {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "idGame")
     private int idGame;
     private String title;
     private String studio;
@@ -34,9 +35,6 @@ public class Game
         this.inStore = inStore;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "idGame")
     public int getIdGame()
     {
         return idGame;
@@ -91,5 +89,10 @@ public class Game
     public String toString()
     {
         return "Id: " + idGame + " | Title: " + title + " | Studio: " + studio + " | Release Date: " + releaseDate + " | In Store:" + inStore;
+    }
+
+    public Object clone() throws CloneNotSupportedException
+    {
+        return super.clone();
     }
 }
