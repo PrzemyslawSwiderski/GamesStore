@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Przemek_Swiderski
@@ -14,11 +15,11 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/cssFile.css" />">
 </head>
 <body>
-<h1 align="center">MENU:</h1>
+<h1 align="center">MENU</h1>
 
 <br>
 
-<form action="purchase?gamerID=${game.idGame}&gameID=${gamer.idGamer}" method="get" align="center"  >
+<form action="purchase?gamerID=${game.idGame}&gameID=${gamer.idGamer}" method="get">
     <table style="width:100%" class="pure-table">
         <td>
             <table style="width:100%" class="pure-table">
@@ -45,7 +46,9 @@
                             <b>${game.studio}</b>
                         </td>
                         <td>
-                            <b>${game.releaseDate}</b>
+                            <b>
+                                <fmt:formatDate value="${game.releaseDate}" pattern="yyyy-MM-dd"/>
+                            </b>
                         </td>
                         <td>
                             <b>${game.inStore}</b>
@@ -82,7 +85,8 @@
                             <b>${gamer.lastName}</b>
                         </td>
                         <td>
-                            <b>${gamer.signDate}</b>
+                            <b><fmt:formatDate value="${gamer.signDate}" pattern="yyyy-MM-dd"/>
+                            </b>
                         </td>
                         <td>
                             <input type="radio" name="gamerID" value="${gamer.idGamer}"/>
@@ -93,12 +97,12 @@
         </td>
     </table>
     <br>
-    <input type="submit" value="Add Purchase">
+    <input type="submit" value="Add Purchase" align="center">
 </form>
 
 <table style="width:100%" class="pure-table">
     <caption style="font-size: 150%">
-        <b>Purchases:</b>
+        <b>Purchases</b>
     </caption>
     <tr>
         <th>Nr.</th>
@@ -122,7 +126,8 @@
                 <b>${purchase.title}</b>
             </td>
             <td>
-                <b>${purchase.purchaseDate}</b>
+                <b><fmt:formatDate value="${purchase.purchaseDate}" pattern="yyyy-MM-dd"/>
+                </b>
             </td>
         </tr>
     </c:forEach>

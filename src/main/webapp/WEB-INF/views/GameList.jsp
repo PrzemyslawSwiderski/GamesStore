@@ -1,6 +1,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Przemek_Swiderski
@@ -44,7 +45,8 @@
                 <b>${game.studio}</b>
             </td>
             <td>
-                <b>${game.releaseDate}</b>
+                <b><fmt:formatDate value="${game.releaseDate}" pattern="yyyy-MM-dd"/>
+                </b>
             </td>
             <td>
                 <b>${game.inStore}</b>

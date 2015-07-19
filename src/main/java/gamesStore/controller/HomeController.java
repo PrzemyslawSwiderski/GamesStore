@@ -7,12 +7,17 @@ import gamesStore.model.Game;
 import gamesStore.model.Gamer;
 import gamesStore.model.Purchase;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 
@@ -25,6 +30,15 @@ public class HomeController
     private GameDao gameDao;
     @Autowired
     private PurchaseDao purchaseDao;
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder)
+    {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+                dateFormat, false));
+    }
 
     @RequestMapping("/")
     public ModelAndView handleRequest() throws Exception
@@ -44,19 +58,8 @@ public class HomeController
     }
 
     @RequestMapping(value = "/purchase", method = RequestMethod.GET)
-    public ModelAndView addPurchase(HttpServletRequest request)
+    public ModelAndView addPurchase(@RequestParam("gamerID") Integer gamerId, @RequestParam("gameID") Integer gameId)
     {
-        int gamerId;
-        int gameId;
-        try
-        {
-            gamerId = Integer.parseInt(request.getParameter("gamerID"));
-            gameId = Integer.parseInt(request.getParameter("gameID"));
-        } catch (Exception e)
-        {
-            return new ModelAndView("redirect:.");
-        }
-
         Gamer gamer = gamerDao.get(gamerId);
         Game game = gameDao.get(gameId);
 

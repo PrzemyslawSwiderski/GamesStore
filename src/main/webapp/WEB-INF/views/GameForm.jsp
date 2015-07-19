@@ -17,7 +17,6 @@
 <body>
 <div align="center">
     <h1>Game Form</h1>
-    <form:errors path="game.*"/>
     <table>
         <form:form action="save" method="post" modelAttribute="game">
             <form:hidden path="idGame"/>
@@ -31,11 +30,12 @@
             </tr>
             <tr>
                 <td>Release Date:</td>
-                <td><input id="releaseDate" name="releaseDate" type="date"></td>
+                <td><input id="releaseDate" name="releaseDate" type="date">
+                    <form:errors path="releaseDate"/></td>
             </tr>
             <tr>
                 <td>Left in Store:</td>
-                <td><input id="inStore" name="inStore" type="number" min="1"></td>
+                <td><input id="inStore" name="inStore" type="number" min="1"><form:errors path="inStore"/></td>
             </tr>
 
             <tr>

@@ -1,6 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--
   Created by IntelliJ IDEA.
   User: Przemek_Swiderski
@@ -44,7 +45,9 @@
                 <b>${gamer.lastName}</b>
             </td>
             <td>
-                <b>${gamer.signDate}</b>
+                <b>
+                    <fmt:formatDate value="${gamer.signDate}" pattern="yyyy-MM-dd"/>
+                </b>
             </td>
             <td>
                 <a href="edit?id=${gamer.idGamer}" class="button dark_grey">Edit</a>

@@ -60,7 +60,7 @@ public class ApplicationContextConfig extends WebMvcConfigurerAdapter
         // properties.put("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
         properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
 
-        properties.put("hibernate.hbm2ddl.auto", "update");
+        properties.put("hibernate.hbm2ddl.auto", "create");
 
         return properties;
     }

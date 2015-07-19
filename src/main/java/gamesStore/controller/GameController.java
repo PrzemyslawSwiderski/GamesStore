@@ -4,7 +4,6 @@ import gamesStore.dao.GameDao;
 import gamesStore.model.Game;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -33,10 +32,11 @@ public class GameController
 
 
     @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        sdf.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, false));
+    public void initBinder(WebDataBinder binder)
+    {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(
+                dateFormat, false));
     }
 
     @RequestMapping("/")
@@ -77,7 +77,7 @@ public class GameController
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public ModelAndView saveGame(@ModelAttribute Game game, BindingResult result)
     {
-        if(result.hasErrors())
+        if (result.hasErrors())
         {
             return new ModelAndView("GameForm");
         }
