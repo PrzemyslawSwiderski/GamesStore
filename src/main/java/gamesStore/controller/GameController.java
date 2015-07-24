@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -75,7 +76,7 @@ public class GameController
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView saveGame(@ModelAttribute Game game, BindingResult result)
+    public ModelAndView saveGame(@Valid @ModelAttribute Game game, BindingResult result)
     {
         if (result.hasErrors())
         {

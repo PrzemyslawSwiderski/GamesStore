@@ -22,20 +22,20 @@
             <form:hidden path="idGame"/>
             <tr>
                 <td>Title:</td>
-                <td><input id="title" name="title" type="text"></td>
+                <td><input id="title" name="title" type="text"><form:errors path="title" cssClass="error" /></td>
             </tr>
             <tr>
                 <td>Studio:</td>
-                <td><input id="studio" name="studio" type="text"></td>
+                <td><input id="studio" name="studio" type="text"><form:errors path="studio" cssClass="error" /></td>
             </tr>
             <tr>
                 <td>Release Date:</td>
-                <td><input id="releaseDate" name="releaseDate" type="date">
-                    <form:errors path="releaseDate"/></td>
+                <td><input id="releaseDate" name="releaseDate" type="date" onemptied="please enter the date">
+                    <form:errors path="releaseDate" cssClass="error"  /></td>
             </tr>
             <tr>
                 <td>Left in Store:</td>
-                <td><input id="inStore" name="inStore" type="number" min="1"><form:errors path="inStore"/></td>
+                <td><input id="inStore" name="inStore" type="number" min="1"><form:errors path="inStore" cssClass="error" /></td>
             </tr>
 
             <tr>

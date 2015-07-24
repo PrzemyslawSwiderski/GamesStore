@@ -1,20 +1,32 @@
 package gamesStore.model;
 
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Table(name = "gamer")
-public class Gamer implements Cloneable
+public class Gamer
 {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idGamer")
     private int idGamer;
+
+    @NotEmpty(message = "Name can not be empty.")
+    @Column(name = "name")
     private String name;
+
+    @NotEmpty(message = "Last Name can not be empty.")
+    @Column(name = "lastName")
     private String lastName;
+
+    @NotNull
+    @Column(name = "signDate")
     private Date signDate;
 
     public Gamer()
@@ -74,8 +86,4 @@ public class Gamer implements Cloneable
         this.signDate = signDate;
     }
 
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
 }

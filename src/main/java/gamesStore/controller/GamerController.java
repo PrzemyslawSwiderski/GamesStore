@@ -5,6 +5,7 @@ import gamesStore.model.Gamer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -72,8 +74,12 @@ public class GamerController
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public ModelAndView saveGamer(@ModelAttribute Gamer gamer)
+    public ModelAndView saveGamer(@Valid @ModelAttribute Gamer gamer, BindingResult result)
     {
+        if (result.hasErrors())
+        {
+            return new ModelAndView("GamerForm");
+        }
         gamerDao.saveOrUpdate(gamer);
         return new ModelAndView("redirect:.");
     }

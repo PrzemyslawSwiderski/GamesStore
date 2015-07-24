@@ -16,9 +16,10 @@
 <body>
 <div align="center">
     <h1>Gamer Form</h1>
-    <table>
-        <form:form action="save" method="post" modelAttribute="gamer">
-            <form:hidden path="idGamer"/>
+    <form:form action="save" method="post" modelAttribute="gamer">
+        <form:hidden path="idGamer"/>
+        <table>
+
             <tr>
                 <td>Name:</td>
                 <td><form:input path="name"/></td>
@@ -32,8 +33,9 @@
                     <input type="submit" value="Save">
                 </td>
             </tr>
-        </form:form>
-    </table>
+        </table>
+        <form:errors path="*" cssClass="error"/>
+    </form:form>
 </div>
 
 </body>

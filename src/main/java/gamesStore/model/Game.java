@@ -1,6 +1,12 @@
 package gamesStore.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
@@ -9,16 +15,28 @@ import java.util.Date;
 
 @Entity
 @Table(name = "game")
-public class Game implements Cloneable
+public class Game
 {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "idGame")
     private int idGame;
+
+    @NotEmpty(message = "Title can not be empty.")
+    @Column(name = "title")
     private String title;
+
+    @NotEmpty(message = "Studio can not be empty.")
+    @Column(name = "studio")
     private String studio;
+
+    @NotNull(message = "Date can not be null.")
+    @Column(name = "releaseDate")
     private Date releaseDate;
+
+    @NotNull
+    @Column(name = "inStore")
     private int inStore;
 
 
@@ -91,8 +109,4 @@ public class Game implements Cloneable
         return "Id: " + idGame + " | Title: " + title + " | Studio: " + studio + " | Release Date: " + releaseDate + " | In Store:" + inStore;
     }
 
-    public Object clone() throws CloneNotSupportedException
-    {
-        return super.clone();
-    }
 }
