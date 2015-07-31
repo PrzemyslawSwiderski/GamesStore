@@ -10,24 +10,26 @@
 
     <properties>
         <java-version>1.7</java-version>
-        <org.springframework-version>4.0.3.RELEASE</org.springframework-version>
+        <org.springframework-version>4.0.2.RELEASE</org.springframework-version>
     </properties>
 
     <dependencies>
+        <!--Spring security-->
         <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
-       <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
 
+        <!--Tests-->
         <dependency>
             <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
+            <artifactId>spring-test</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
 

@@ -14,6 +14,17 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/cssFile.css" />">
 </head>
 <body>
+
+<div align="left">
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        Welcome : ${pageContext.request.userPrincipal.name}
+        <c:url var="logoutUrl" value="/logout"/>
+        <form action="${logoutUrl}" method="post">
+            <input type="submit" value="Log out" />
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </c:if>
+</div>
 <div align="center">
     <h1>Gamer Form</h1>
     <form:form action="save" method="post" modelAttribute="gamer">
@@ -37,6 +48,9 @@
         <form:errors path="*" cssClass="error"/>
     </form:form>
 </div>
+<form method="get" action=".">
+    <input type="submit" value="Go back to list">
+</form>
 
 </body>
 </html>

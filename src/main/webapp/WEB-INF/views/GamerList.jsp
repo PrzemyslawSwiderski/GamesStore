@@ -19,6 +19,17 @@
 </head>
 
 <body>
+
+<div align="left">
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        Welcome : ${pageContext.request.userPrincipal.name}
+        <c:url var="logoutUrl" value="/logout"/>
+        <form action="${logoutUrl}" method="post">
+            <input type="submit" value="Log out" />
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </c:if>
+</div>
 <hr>
 <form:form action="new" method="get">
     <input align="middle" type="submit" value="Add New Gamer">

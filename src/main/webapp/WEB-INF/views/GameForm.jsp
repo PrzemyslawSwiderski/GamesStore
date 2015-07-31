@@ -15,6 +15,17 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/cssFile.css" />">
 </head>
 <body>
+
+<div align="left">
+    <c:if test="${pageContext.request.userPrincipal.name != null}">
+        Welcome : ${pageContext.request.userPrincipal.name}
+        <c:url var="logoutUrl" value="/logout"/>
+        <form action="${logoutUrl}" method="post">
+            <input type="submit" value="Log out" />
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+    </c:if>
+</div>
 <div align="center">
     <h1>Game Form</h1>
     <table>
@@ -30,12 +41,12 @@
             </tr>
             <tr>
                 <td>Release Date:</td>
-                <td><input id="releaseDate" name="releaseDate" type="date" onemptied="please enter the date">
+                <td><input id="releaseDate" name="releaseDate" type="date" value="2015-01-01">
                     <form:errors path="releaseDate" cssClass="error"  /></td>
             </tr>
             <tr>
                 <td>Left in Store:</td>
-                <td><input id="inStore" name="inStore" type="number" min="1"><form:errors path="inStore" cssClass="error" /></td>
+                <td><input id="inStore" name="inStore" value="1" type="number" min="1"><form:errors path="inStore" cssClass="error" /></td>
             </tr>
 
             <tr>
@@ -48,6 +59,9 @@
     </table>
 </div>
 
+<form method="get" action=".">
+    <input type="submit" value="Go back to list">
+</form>
 </body>
 </html>
 
