@@ -25,7 +25,6 @@ import java.util.Properties;
 
 @EnableWebMvc
 @ComponentScan("gamesStore")
-@Import({ SecurityConfig.class })
 @EnableTransactionManagement
 @Configuration
 public class ApplicationContextConfig extends WebMvcConfigurerAdapter

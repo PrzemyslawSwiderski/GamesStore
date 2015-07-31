@@ -6,24 +6,31 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter
 {
     @Autowired
-    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception
+    {
         auth.inMemoryAuthentication().withUser("bill").password("1234").roles("ADMIN");
+        auth.inMemoryAuthentication().withUser("Pszemo").password("").roles("ADMIN");
+
     }
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(HttpSecurity http) throws Exception
+    {
 
         http.authorizeRequests()
                 .antMatchers("/**").access("hasRole('ROLE_ADMIN')")
-                .and().formLogin();
-
+                .and()
+                .formLogin().loginPage("/login").permitAll()
+                .and()
+                .logout()
+                .permitAll();
     }
+
 
 }

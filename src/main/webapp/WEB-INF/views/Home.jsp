@@ -15,9 +15,9 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/resources/cssFile.css" />">
 </head>
 <body>
-<div align="left">
+<div align="left" >
     <c:if test="${pageContext.request.userPrincipal.name != null}">
-        Welcome : ${pageContext.request.userPrincipal.name}
+        Welcome : <b> ${pageContext.request.userPrincipal.name}</b>
         <c:url var="logoutUrl" value="/logout"/>
         <form action="${logoutUrl}" method="post">
             <input type="submit" value="Log out" />
